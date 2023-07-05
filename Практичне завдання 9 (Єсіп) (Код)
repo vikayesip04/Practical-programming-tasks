@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Функція для обчислення мінімальної кількості кроків
+int minSteps(int x, int y) {
+    // Розрахунок різниці між x та y
+    int diff = abs(y - x);
+
+    // Якщо різниця дорівнює 0, повертаємо 0
+    if (diff == 0) {
+        return 0;
+    }
+
+    // Ініціалізуємо змінні для попереднього та поточного кроку
+    int prevStep = 0;
+    int currStep = 1;
+
+    // Ітеративний процес для обчислення мінімальної кількості кроків
+    while (currStep < diff) {
+        int temp = currStep;
+        currStep += prevStep;
+        prevStep = temp;
+    }
+
+    return currStep;
+}
+
+int main() {
+    int x, y;
+
+    // Введення значень x та y
+    printf("Введіть значення x: ");
+    scanf("%d", &x);
+    printf("Введіть значення y: ");
+    scanf("%d", &y);
+
+    // Обчислення мінімальної кількості кроків
+    int steps = minSteps(x, y);
+
+    // Виведення результату
+    printf("Мінімальна кількість кроків: %d\n", steps);
+
+    return 0;
+}
